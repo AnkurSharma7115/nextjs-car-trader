@@ -18,14 +18,10 @@ export default function Faq({ faq }: FaqProps) {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>
-              {f.question}
-            </Typography>
+            <Typography>{f.question}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              {f.answer}
-            </Typography>
+            <Typography>{f.answer}</Typography>
           </AccordionDetails>
         </Accordion>
       ))}
@@ -33,7 +29,7 @@ export default function Faq({ faq }: FaqProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<FaqProps> = async () => {
   const db = await openDB();
   const faq = await db.all('SELECT * FROM FAQ ORDER BY createDate DESC');
   return { props: { faq } };
